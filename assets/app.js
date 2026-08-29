@@ -52,3 +52,66 @@ function initScramble(){
 }
 initBoot();initReveal();initMode();initProjects();initTilt();initScramble();
 })();
+
+// ==========================================
+// SYSTEM THEME TOGGLE (ONLINE / COMPROMISED)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const modeBtn = document.getElementById("modeBtn");
+  const body = document.body;
+
+  // ฟังก์ชันสร้างเสียงบี๊บสังเคราะห์แบบไซไฟ
+  function playBeepSound(type) {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      if (type === 'danger') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, ctx.currentTime);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+        osc.start(); osc.stop(ctx.currentTime + 0.3);
+      } else {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+        osc.start(); osc.stop(ctx.currentTime + 0.15);
+      }
+    } catch (e) { console.log("Audio play blocked"); }
+  }
+
+  // โหลดความจำโหมดข้ามหน้า
+  const currentSystemMode = localStorage.getItem("system-mode") || "online";
+  if (currentSystemMode === "compromised") {
+    body.classList.add("system-compromised");
+    if (modeBtn) modeBtn.textContent = "SYSTEM: COMPROMISED";
+  } else {
+    body.classList.remove("system-compromised");
+    if (modeBtn) modeBtn.textContent = "SYSTEM: ONLINE";
+  }
+
+  // เปิดคำสั่งกดเปลี่ยนโหมดพร้อมจอกระพริบ
+  if (modeBtn) {
+    modeBtn.addEventListener("click", () => {
+      body.classList.add("system-rebooting");
+      setTimeout(() => {
+        if (body.classList.contains("system-compromised")) {
+          body.classList.remove("system-compromised");
+          modeBtn.textContent = "SYSTEM: ONLINE";
+          localStorage.setItem("system-mode", "online");
+          playBeepSound('online');
+        } else {
+          body.classList.add("system-compromised");
+          modeBtn.textContent = "SYSTEM: COMPROMISED";
+          localStorage.setItem("system-mode", "compromised");
+          playBeepSound('danger');
+        }
+        body.classList.remove("system-rebooting");
+      }, 400);
+    });
+  }
+});
