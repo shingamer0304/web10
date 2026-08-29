@@ -487,3 +487,86 @@ body.system-rebooting {
   100% { opacity: 1; filter: none; }
 }
 
+/* ==========================================================================
+   THE RED REVOLUTION: FORCE ALL GOLD/YELLOW TO RED (100% INJECTION)
+   ========================================================================== */
+
+/* 1. บังคับตัวแปรสีสากล (หากในโค้ดเดิมของคุณมีการประกาศสีหลักไว้ที่ :root หรือ body) */
+.system-compromised,
+.system-compromised :root,
+.system-compromised body {
+  --primary: #ff1a1a !important;
+  --primary-color: #ff1a1a !important;
+  --accent: #ff4d4d !important;
+  --gold: #ff1a1a !important;
+  --yellow: #ff1a1a !important;
+}
+
+/* 2. บังคับข้อความทุกชิ้นที่เคยเป็นสีเหลืองทอง ให้กลายเป็นสีแดงนีออน */
+.system-compromised h1 span,
+.system-compromised h2,
+.system-compromised b,
+.system-compromised strong,
+.system-compromised .brand-mark,
+.system-compromised .nav-link.active,
+.system-compromised .section-label,
+.system-compromised .module-index,
+.system-compromised .nameplate h2,
+.system-compromised .stat-grid b,
+.system-compromised .skill span,
+.system-compromised .edu.active b,
+.system-compromised .contact-panel h2,
+.system-compromised [class*="gold"], 
+.system-compromised [class*="yellow"],
+.system-compromised .decrypt span,
+.system-compromised .section-label b {
+  color: #ff1a1a !important;
+  text-shadow: 0 0 12px rgba(255, 26, 26, 0.65) !important;
+}
+
+/* 3. บังคับเปลี่ยนสีปุ่มหลักจากเหลืองเหลี่ยมตัวหนาหน้าแรก (OPEN ARCHIVE) ให้เป็นพื้นแดง */
+.system-compromised .open-archive-btn,
+.system-compromised #openArchiveBtn,
+.system-compromised .btn-primary,
+.system-compromised button[class*="gold"] {
+  background-color: #ff1a1a !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px rgba(255, 26, 26, 0.5) !important;
+  border-color: #ff1a1a !important;
+}
+
+/* 4. บังคับเส้นตาราง เส้นไกด์ เส้นขอบ และโครงเลย์เอาต์เรืองแสงทั้งหมดให้เป็นสีแดง */
+.system-compromised .nav-shell,
+.system-compromised .contact-row,
+.system-compromised .portrait,
+.system-compromised .dev-window,
+.system-compromised .timeline-line,
+.system-compromised .profile-command,
+.system-compromised .photo-slot-border,
+.system-compromised .data-line,
+.system-compromised border,
+.system-compromised [class*="border"] {
+  border-color: #ff1a1a !important;
+  box-shadow: 0 0 10px rgba(255, 26, 26, 0.25) !important;
+}
+
+/* 5. สไตล์ระเบิดพลังกะพริบแจ้งเตือนของปุ่มสลับสถานะระบบขวาบน */
+.system-compromised #modeBtn {
+  border-color: #ff1a1a !important;
+  background: rgba(255, 26, 26, 0.1) !important;
+  color: #ff1a1a !important;
+  text-shadow: 0 0 8px rgba(255, 26, 26, 0.6) !important;
+  animation: pulse-danger-neon 1.5s infinite !important; /* กระพริบถี่ขึ้นให้ดูเร่งรีบ */
+}
+.system-compromised #modeBtn:hover {
+  background: #ff1a1a !important;
+  color: #000000 !important;
+  box-shadow: 0 0 25px rgba(255, 26, 26, 0.8) !important;
+}
+
+/* อนิเมชันกระพริบตาชีพจร */
+@keyframes pulse-danger-neon {
+  0% { box-shadow: 0 0 10px rgba(255, 26, 26, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 26, 26, 0.6); border-color: #ff6666; }
+  100% { box-shadow: 0 0 10px rgba(255, 26, 26, 0.2); }
+}
