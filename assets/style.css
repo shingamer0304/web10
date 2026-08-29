@@ -345,3 +345,69 @@ body.interests-page .section {
   }
 }
 
+/* ==========================================================================
+   ADVANCED CYBERPUNK UI THEME TOGGLE
+   ========================================================================== */
+
+/* สไตล์พื้นฐานของปุ่มตอน ONLINE (ปรับให้มีมิติขึ้นด้วยแสงนีออนพัลส์) */
+#modeBtn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ffb700;
+  background: rgba(255, 183, 0, 0.1);
+  color: #ffb700;
+  text-shadow: 0 0 5px rgba(255, 183, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255, 183, 0, 0.1);
+}
+
+#modeBtn:hover {
+  background: #ffb700;
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 183, 0, 0.6);
+}
+
+/* สีธีมเมื่อเปลี่ยนสถานะเป็นระบบโดนเจาะ (SYSTEM: COMPROMISED) */
+body.system-compromised {
+  /* เปลี่ยนตัวแปรสีหลักของหน้าเว็บคุณให้กลายเป็นสีแดงไซไฟ (ถ้าหน้าเว็บใช้ CSS Variables คุมสี) */
+  --primary-color: #ff2a2a; 
+}
+
+/* เปลี่ยนสีตัวปุ่มเองเมื่ออยู่ในโหมดสีแดง */
+body.system-compromised #modeBtn {
+  border-color: #ff2a2a;
+  background: rgba(255, 42, 42, 0.1);
+  color: #ff2a2a;
+  text-shadow: 0 0 5px rgba(255, 42, 42, 0.5);
+  box-shadow: 0 0 10px rgba(255, 42, 42, 0.2);
+  animation: pulse-danger 2s infinite; /* ปล่อยแสงกระพริบเตือนสีแดง */
+}
+
+body.system-compromised #modeBtn:hover {
+  background: #ff2a2a;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 42, 42, 0.7);
+}
+
+/* เอฟเฟกต์จอกระพริบตอนกำลังสลับระบบ (Rebooting) */
+body.system-rebooting {
+  animation: system-glitch 0.4s ease-out;
+  pointer-events: none; /* ล็อกไม่ให้กดซ้ำระหว่างประมวลผล */
+}
+
+/* คีย์เฟรมสร้างเอฟเฟกต์ */
+@keyframes pulse-danger {
+  0% { box-shadow: 0 0 10px rgba(255, 42, 42, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 42, 42, 0.5); border-color: #ff7373; }
+  100% { box-shadow: 0 0 10px rgba(255, 42, 42, 0.2); }
+}
+
+@keyframes system-glitch {
+  0% { opacity: 1; filter: invert(0) brightness(1); }
+  20% { opacity: 0.3; filter: invert(1) brightness(2); }
+  40% { opacity: 0.8; filter: invert(0) contrast(2); }
+  60% { opacity: 0.1; filter: sepia(1) hue-rotate(90deg); }
+  80% { opacity: 0.9; filter: invert(0); }
+  100% { opacity: 1; }
+}
