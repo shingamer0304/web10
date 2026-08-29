@@ -413,75 +413,72 @@ body.system-rebooting {
 }
 
 /* ==========================================================================
-   ADVANCED CYBERPUNK COMPROMISED THEME (SAFE & FIXED SPECIFICITY)
+   GLOBAL COMPROMISED SYSTEM THEME SWITCH (RE-ENGINEERED)
    ========================================================================== */
 
-/* 1. เมื่อระบบโดนเจาะ ให้ล็อคเป้าเปลี่ยนเฉพาะจุดข้อความที่เป็นสีเหลือง/ทองเดิม */
-body.system-compromised h1 span,
-body.system-compromised .brand-mark,
-body.system-compromised .nav-link.active,
-body.system-compromised .section-label,
-body.system-compromised .module-index,
-body.system-compromised .contact-panel h2,
-body.system-compromised .nameplate h2,
-body.system-compromised .stat-grid b,
-body.system-compromised .skill span,
-body.system-compromised .edu.active b,
-body.system-compromised .btn-primary, 
-body.system-compromised .open-archive-btn, /* ปุ่มหลักหน้าแรก */
-body.system-compromised #openArchiveBtn {  /* แก้ไขชื่อ ID ปรับตามโค้ดคุณ */
+/* บังคับสลับโทนสีหลักเฉพาะองค์ประกอบสีทองเมื่อคลาสสภาวะฉุกเฉินเปิดใช้งาน */
+.system-compromised h1 span,
+.system-compromised .brand-mark,
+.system-compromised .nav-link.active,
+.system-compromised .section-label,
+.system-compromised .module-index,
+.system-compromised .contact-panel h2,
+.system-compromised .nameplate h2,
+.system-compromised .stat-grid b,
+.system-compromised .skill span,
+.system-compromised .edu.active b,
+.system-compromised .btn-primary,
+.system-compromised .open-archive-btn,
+.system-compromised #openArchiveBtn {
   color: #ff2a2a !important;
   text-shadow: 0 0 10px rgba(255, 42, 42, 0.6) !important;
 }
 
-/* 2. เปลี่ยนพื้นหลังปุ่มหลัก (ปุ่ม OPEN ARCHIVE) จากสีทองให้เป็นพื้นสีแดงนีออน */
-body.system-compromised .open-archive-btn,
-body.system-compromised [href*="archive"],
-body.system-compromised button.gold-bg { 
+/* บังคับสลับสีพื้นหลังปุ่ม ARCHIVE ให้เป็นสีแดง */
+.system-compromised .open-archive-btn,
+.system-compromised [href*="archive"],
+.system-compromised button.gold-bg {
   background-color: #ff2a2a !important;
   color: #000000 !important;
   box-shadow: 0 0 15px rgba(255, 42, 42, 0.4) !important;
 }
 
-/* 3. ล็อคเป้าหมายเปลี่ยนเฉพาะสีเส้นขอบกรอบไซไฟ ไม่ให้ลามไปเปลี่ยนสีตัวหนังสือขาว */
-body.system-compromised .nav-shell,
-body.system-compromised .contact-row,
-body.system-compromised .portrait,
-body.system-compromised .dev-window,
-body.system-compromised .timeline-line,
-body.system-compromised .profile-command,
-body.system-compromised .photo-slot-border {
+/* สลับสีเส้นขอบกรอบแนว Sci-Fi รอบหน้าจอ */
+.system-compromised .nav-shell,
+.system-compromised .contact-row,
+.system-compromised .portrait,
+.system-compromised .dev-window,
+.system-compromised .timeline-line,
+.system-compromised .profile-command,
+.system-compromised .photo-slot-border {
   border-color: #ff2a2a !important;
   box-shadow: 0 0 8px rgba(255, 42, 42, 0.2) !important;
 }
 
-/* 4. สไตล์เฉพาะของปุ่มกระพริบฉุกเฉินมุมขวาบนหน้าจอ */
-body.system-compromised #modeBtn {
+/* ควบคุมการกะพริบแจ้งเตือนภัยพิบัติของปุ่มเปิด-ปิดระบบ */
+.system-compromised #modeBtn {
   border-color: #ff2a2a !important;
   background: rgba(255, 42, 42, 0.1) !important;
   color: #ff2a2a !important;
   text-shadow: 0 0 5px rgba(255, 42, 42, 0.5) !important;
   animation: pulse-danger-neon 2s infinite !important;
 }
-body.system-compromised #modeBtn:hover {
+.system-compromised #modeBtn:hover {
   background: #ff2a2a !important;
   color: #000000 !important;
   box-shadow: 0 0 20px rgba(255, 42, 42, 0.7) !important;
 }
 
-/* 5. เอฟเฟกต์กระพริบตอนสลับโหมด Reboot (ตัดคุณสมบัติที่ไปรบกวนสีภาพหลักออก) */
-body.system-rebooting {
+/* เอฟเฟกต์กระพริบตาตอนกดสลับระบบ */
+.system-rebooting {
   animation: safe-system-glitch 0.4s ease-out;
   pointer-events: none;
 }
-
-/* คีย์เฟรมควบคุมอนิมเชันความปลอดภัย */
 @keyframes pulse-danger-neon {
   0% { box-shadow: 0 0 10px rgba(255, 42, 42, 0.2); }
   50% { box-shadow: 0 0 18px rgba(255, 42, 42, 0.5); border-color: #ff6666; }
   100% { box-shadow: 0 0 10px rgba(255, 42, 42, 0.2); }
 }
-
 @keyframes safe-system-glitch {
   0% { opacity: 1; filter: brightness(1); }
   25% { opacity: 0.3; filter: brightness(1.7); }
@@ -489,3 +486,4 @@ body.system-rebooting {
   75% { opacity: 0.4; filter: brightness(1.4); }
   100% { opacity: 1; filter: none; }
 }
+
